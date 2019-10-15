@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import DocumentRead from "./components/documentRead";
+import DocumentUpdate from "./components/documentUpdate";
+import DocumentCreate from "./components/documentCreate";
+import DocumentIndex from "./components/documentIndex";
+import Navbar from "./components/navbar";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<Router className='container'>
+			<div className='container'>
+				<Navbar />
+				<Route path='/create' component={DocumentCreate} />
+				<Route path='/list' component={DocumentRead} />
+				<Route path='/' exact component={DocumentIndex} />
+				<Route path='/update/:id' component={DocumentUpdate} />
+				<Route path='/delete/:id' component={DocumentRead} />
+			</div>
+		</Router>
+	);
 }
 
 export default App;
